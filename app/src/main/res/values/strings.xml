@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Compass</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_show_needle">ShowNeedle</string>
+    <string name="show_needle">show needle</string>
+    <string name="title_activity_heads_up">HeadsUp</string>
+</resources>
