@@ -60,25 +60,6 @@ public class TiltActivity extends AppCompatActivity implements SensorEventListen
         return true;
     }
 
-    public void showDir() {
-        if (acc_output == null ) {
-            acc_output = (AccView) findViewById(R.id.my_gravity);
-        }
-        StringBuilder outputBuilder = new StringBuilder(50);
-        float azrad;
-        float asdeg;
-        outputBuilder.append(String.format("x: %f, y: %f, z: %f\n",
-                accray[0],
-                accray[1],
-                accray[2]
-
-        ));
-        outputBuilder.append(String.format("absolute acceleration: %f\n",
-                Math.sqrt(accray[0]* accray[0] + accray[1] * accray[1] +
-                        accray[2] * accray[2])));
-
-        acc_output.setText(outputBuilder);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -110,30 +91,28 @@ public class TiltActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-
-        if (event.sensor == acc) {
-        System.arraycopy(event.values, 0, accray, 0, event.values.length);
-            showDir();
-        } else {
-            alert("sensory type not acc?!");
-        }
+        StringBuilder outputBuilder = new StringBuilder(50);
+        outputBuilder.append(String.format("x: %f, y: %f, z: %f\n",
+                event.values[0],
+                event.values[1],
+                event.values[2]
+        ));
+        outputBuilder.append(String.format("total acceleration: %f\n",
+                Math.sqrt(event.values[0] * event.values[0] + event.values[1] * event.values[1] +
+                        event.values[2] * event.values[2])));
+        if (event.sensor == acc)
+            acc_output.setAcc(outputBuilder.toString());
+        else if (event.sensor == grav)
+            acc_output.setGrav(outputBuilder.toString());
+        else if (event.sensor == linacc)
+            acc_output.setLinAcc(outputBuilder.toString());
+        else
+            alert("sensory type not acc/grav/linacc?!");
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        AccView aview = (AccView) findViewById(R.id.my_gravity);
-        if (aview == null) {
-            return;
-        }
-        if (sensor == acc) {
-            aview.append("acc: " + Util.accuracy(accuracy) + "\n");
-        } else if (sensor == grav) {
-            aview.append("grav: "+ Util.accuracy(accuracy) + "\n");
-        }
 
-        else {
-            alert("sensory type not grav or acc?!");
-        }
     }
 
     @Override
