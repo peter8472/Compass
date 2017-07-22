@@ -17,7 +17,7 @@ public class AccView extends SurfaceView implements SurfaceHolder.Callback {
     public  Runnable runner;
     public Paint mypaint;
     public AccView(Context context, AttributeSet attributeSet) {
-        super(context);
+        super(context, attributeSet);
         holder = getHolder();
         holder.addCallback(this);
         mypaint = new Paint();
