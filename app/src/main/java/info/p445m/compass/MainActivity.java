@@ -18,9 +18,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
+    public static final String EXTRA_MESSAGE = "info.p445m.compass.MESSAGE";
     SensorManager mSensorManager;
     Sensor mag;
     Sensor acc;
@@ -51,8 +53,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 TextView output = (TextView) findViewById(R.id.output);
                 heads=!heads;
                 try {
+                    StringBuilder stringBuilder = new StringBuilder();
                     Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
+                    List<Sensor> sList = mSensorManager.getSensorList(Sensor.TYPE_ALL);
+                    for (Sensor i : sList) {
+
+                        stringBuilder.append(i.getName()+ "\n");
+                        //stringBuilder.append("\n");
+                    }
+                    Intent showSensorIntent = new Intent(getApplicationContext(), OutputTextActivity.class);
+                    showSensorIntent.putExtra(EXTRA_MESSAGE, stringBuilder.toString());
+                    startActivity(showSensorIntent);
                 }catch (NullPointerException e) {
                     output.setText("");
                     StackTraceElement []errs = e.getStackTrace();
@@ -151,6 +163,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
         if (id == R.id.action_needle) {
             Intent intent = new Intent(this, NeedleActivity.class);
+            startActivity(intent);
+        }
+        if (id == R.id.action_tilt) {
+            Intent intent = new Intent(this, TiltActivity.class);
             startActivity(intent);
         }
 

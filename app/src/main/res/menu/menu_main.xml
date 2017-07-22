@@ -4,17 +4,22 @@
     tools:context="info.p445m.compass.MainActivity">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="101"
         android:title="@string/action_settings"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_needle"
-        android:orderInCategory="100"
+        android:orderInCategory="101"
         android:title="@string/show_needle"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_tilt"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"
+        android:title="Tilt" />
     <item
         android:id="@+id/action_headsup"
-        android:orderInCategory="100"
+        android:orderInCategory="101"
         android:title="@string/title_activity_heads_up"
         app:showAsAction="never" />
 </menu>

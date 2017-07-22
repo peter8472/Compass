@@ -34,7 +34,16 @@
         <activity
             android:name=".HeadsUp"
             android:label="@string/title_activity_heads_up"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".OutputTextActivity"
+            android:label="@string/title_activity_output_text" />
+        <activity
+            android:name=".TiltActivity"
+            android:label="@string/title_activity_tilt"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

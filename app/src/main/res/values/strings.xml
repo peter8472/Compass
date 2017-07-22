@@ -4,4 +4,6 @@
     <string name="title_activity_show_needle">ShowNeedle</string>
     <string name="show_needle">show needle</string>
     <string name="title_activity_heads_up">HeadsUp</string>
+    <string name="title_activity_output_text">OutputTextActivity</string>
+    <string name="title_activity_tilt">TiltActivity</string>
 </resources>
